@@ -1,15 +1,17 @@
 import Link from "next/link";
 import BlogCard from "./components/BlogCard";
+import { prisma } from "@/app/lib/prisma";
 
 async function getBlogs() {
-  const baseUrl = process.env.VERCEL_URL 
-    ? `https://${process.env.VERCEL_URL}` 
-    : "http://localhost:3000";
-    
-  const res = await fetch(`${baseUrl}/api/blogs`, {
-    cache: "no-store",
-  });
-  return res.json();
+  try {
+    const blogs = await prisma.blog.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+    return blogs;
+  } catch (error) {
+    console.error("DB Error:", error);
+    return [];
+  }
 }
 
 export default async function Home() {
