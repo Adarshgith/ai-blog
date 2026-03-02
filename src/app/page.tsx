@@ -2,7 +2,11 @@ import Link from "next/link";
 import BlogCard from "./components/BlogCard";
 
 async function getBlogs() {
-  const res = await fetch("/api/blogs", {
+  const baseUrl = process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}` 
+    : "http://localhost:3000";
+    
+  const res = await fetch(`${baseUrl}/api/blogs`, {
     cache: "no-store",
   });
   return res.json();
