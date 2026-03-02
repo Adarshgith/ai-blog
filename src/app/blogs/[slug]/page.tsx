@@ -3,7 +3,7 @@ import Image from "next/image";
 import DeleteButton from "@/app/components/DeleteButton";
 
 async function getBlog(slug: string) {
-  const res = await fetch(`http://localhost:3000/api/blogs/${slug}`, {
+  const res = await fetch(`/api/blogs/${slug}`, {
     cache: "no-store",
   });
   return res.json();
