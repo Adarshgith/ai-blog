@@ -5,9 +5,9 @@ export default function Navbar() {
     <nav className="bg-white border-b border-gray-200 px-6 py-4">
       <div className="max-w-5xl mx-auto flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold text-gray-900">
-          ✍️ AI Blog
+          ✍️ AiBlogHub
         </Link>
-        <div className="flex gap-6">
+        <div className="flex gap-6 text-center items-center">
           <Link href="/" className="text-gray-600 hover:text-gray-900">
             Home
           </Link>
