@@ -1,12 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import DeleteButton from "@/app/components/DeleteButton";
+import { prisma } from "@/app/lib/prisma";
 
 async function getBlog(slug: string) {
-  const res = await fetch(`/api/blogs/${slug}`, {
-    cache: "no-store",
-  });
-  return res.json();
+  try {
+    const blog = await prisma.blog.findUnique({
+      where: { slug },
+    });
+    return blog;
+  } catch (error) {
+    console.error("DB Error:", error);
+    return null;
+  }
 }
 
 export default async function BlogPage({
@@ -17,7 +23,7 @@ export default async function BlogPage({
   const { slug } = await params;
   const blog = await getBlog(slug);
 
-  if (blog.error) {
+  if (!blog) {
     return (
       <div className="text-center py-20">
         <h1 className="text-2xl font-bold text-gray-900">Blog not found!</h1>
@@ -98,30 +104,30 @@ export default async function BlogPage({
 
       <hr className="my-10 border-gray-200" />
 
-    {/* Footer */}
-    <div className="flex justify-between items-center">
-    <Link
-        href="/blogs"
-        className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
-    >
-        ← Back to blogs
-    </Link>
-    <div className="flex gap-3">
+      {/* Footer */}
+      <div className="flex justify-between items-center">
         <Link
-        href={`/edit/${slug}`}
-        className="bg-blue-500 text-white text-sm px-5 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+          href="/blogs"
+          className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
         >
-        ✏️ Edit Blog
+          ← Back to blogs
         </Link>
-        <DeleteButton slug={slug} />
-        <Link
-        href="/create"
-        className="bg-gray-900 text-white text-sm px-5 py-2 rounded-lg hover:bg-gray-700 transition-colors"
-        >
-        ✍️ Write a Blog
-        </Link>
-    </div>
-    </div>
+        <div className="flex gap-3">
+          <Link
+            href={`/edit/${slug}`}
+            className="bg-blue-500 text-white text-sm px-5 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            ✏️ Edit Blog
+          </Link>
+          <DeleteButton slug={slug} />
+          <Link
+            href="/create"
+            className="bg-gray-900 text-white text-sm px-5 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+          >
+            ✍️ Write a Blog
+          </Link>
+        </div>
+      </div>
 
     </div>
   );
