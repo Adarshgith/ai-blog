@@ -22,7 +22,7 @@ export default async function Home() {
       {/* Hero Section */}
       <div className="text-center py-20 border-b border-gray-200 mb-10">
         <h1 className="text-5xl font-bold text-gray-900 mb-4">
-          Welcome to AI Blog ✍️
+          Welcome to AI Blog ✍️ The Future of Blogging is Here!
         </h1>
         <p className="text-xl text-gray-500 mb-8">
           Write your own blogs or let AI write for you!
