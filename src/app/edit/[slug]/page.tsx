@@ -100,7 +100,7 @@ export default function EditPage() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold text-gray-900 mb-8">
+      <h1 className="text-4xl font-bold text-gray-400 mb-8">
         Edit Blog ✏️
       </h1>
 

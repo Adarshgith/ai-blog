@@ -4,10 +4,10 @@ export default function Navbar() {
   return (
     <nav className="bg-white border-b border-gray-200 px-6 py-4">
       <div className="max-w-5xl mx-auto flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-gray-900">
+        <Link href="/" className="text-2xl font-bold text-gray-400">
           ✍️ AiBlogHub
         </Link>
-        <div className="flex gap-6 text-center items-center">
+        <div className="flex gap-6 text-center items-center max-md:text-md max-md:gap-4">
           <Link href="/" className="text-gray-600 hover:text-gray-900">
             Home
           </Link>
@@ -16,7 +16,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/create"
-            className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800"
+            className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 max-md:px-2 max-md:py-1"
           >
             + New Blog
           </Link>

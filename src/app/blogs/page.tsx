@@ -21,7 +21,7 @@ export default async function BlogsPage() {
   return (
     <div>
       <div className="mb-10">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">All Blogs</h1>
+        <h1 className="text-4xl font-bold text-gray-400 mb-2">All Blogs</h1>
         <p className="text-gray-500">
           {blogs.length} blog{blogs.length !== 1 ? "s" : ""} published
         </p>

@@ -23,7 +23,7 @@ export default async function Home() {
     <div>
       {/* Hero Section */}
       <div className="text-center py-20 border-b border-gray-200 mb-10">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">
+        <h1 className="text-5xl font-bold text-gray-400 mb-4">
           Welcome to AI Blog ✍️
         </h1>
         <p className="text-xl text-gray-500 mb-8">
@@ -40,7 +40,7 @@ export default async function Home() {
       {/* Latest Blogs */}
       <div>
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">Latest Blogs</h2>
+          <h2 className="text-2xl font-bold text-gray-400">Latest Blogs</h2>
           <Link href="/blogs" className="text-gray-500 hover:text-black">
             View all →
           </Link>
