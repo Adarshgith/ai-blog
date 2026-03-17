@@ -1,6 +1,8 @@
 import BlogCard from "@/app/components/BlogCard";
 import { prisma } from "@/app/lib/prisma";
 
+export const revalidate = 0;
+
 async function getBlogs() {
   try {
     const blogs = await prisma.blog.findMany({
