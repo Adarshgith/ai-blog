@@ -21,14 +21,16 @@ export default async function BlogsPage() {
   return (
     <div>
       <div className="mb-10">
-        <h1 className="text-4xl font-bold text-gray-400 mb-2">All Blogs</h1>
-        <p className="text-gray-500">
+        <h1 className="font-display text-3xl sm:text-4xl font-semibold text-ink mb-2">
+          All Blogs
+        </h1>
+        <p className="text-ink-muted">
           {blogs.length} blog{blogs.length !== 1 ? "s" : ""} published
         </p>
       </div>
 
       {blogs.length === 0 ? (
-        <div className="text-center py-20 text-gray-400">
+        <div className="text-center py-20 text-ink-faint">
           <p className="text-xl">No blogs yet!</p>
           <p>Be the first to write one 🚀</p>
         </div>

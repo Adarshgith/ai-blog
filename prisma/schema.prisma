@@ -16,6 +16,8 @@ model Blog {
   coverImage    String?  
   tags          String[]
   isAIGenerated Boolean  @default(false)
+  userId        String
+  authorName    String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }

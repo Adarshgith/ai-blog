@@ -109,18 +109,21 @@ export default function CreatePage() {
     setLoading(false);
   };
 
+  const inputClass =
+    "w-full bg-surface text-ink placeholder:text-ink-faint border border-border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors";
+
   return (
     <div className="w-full max-w-3xl mx-auto px-4 sm:px-6">
-      <h1 className="text-2xl sm:text-4xl font-bold text-gray-800 mb-6">
+      <h1 className="font-display text-2xl sm:text-4xl font-semibold text-ink mb-6">
         Create New Blog ✍️
       </h1>
 
       {/* AI Generator Section */}
-      <div className="bg-purple-50 border border-purple-200 rounded-xl p-4 sm:p-6 mb-6">
-        <h2 className="text-base sm:text-lg font-bold text-purple-900 mb-1">
+      <div className="bg-primary-tint border border-primary/20 rounded-xl p-4 sm:p-6 mb-6">
+        <h2 className="text-base sm:text-lg font-semibold text-ink mb-1">
           🤖 Generate with AI
         </h2>
-        <p className="text-xs sm:text-sm text-purple-600 mb-4">
+        <p className="text-xs sm:text-sm text-ink-muted mb-4">
           Enter a topic and AI will write the entire blog for you!
         </p>
         <div className="flex flex-col sm:flex-row gap-3">
@@ -129,12 +132,12 @@ export default function CreatePage() {
             placeholder="e.g. Future of Artificial Intelligence"
             value={aiTopic}
             onChange={(e) => setAiTopic(e.target.value)}
-            className="w-full text-black border border-purple-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full bg-surface text-ink placeholder:text-ink-faint border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
           />
           <button
             onClick={handleAIGenerate}
             disabled={aiLoading}
-            className="w-full sm:w-auto bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 disabled:opacity-50 whitespace-nowrap"
+            className="w-full sm:w-auto bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-dark disabled:opacity-50 whitespace-nowrap transition-colors"
           >
             {aiLoading ? "Generating..." : "✨ Generate"}
           </button>
@@ -144,20 +147,20 @@ export default function CreatePage() {
       <div className="flex flex-col gap-5">
         {/* Cover Image */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-ink mb-2">
             Cover Image
           </label>
           <input
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none"
+            className="w-full bg-surface text-ink text-sm border border-border rounded-lg px-3 py-2 file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:bg-primary-tint file:text-primary file:font-medium focus:outline-none"
           />
           {imageUploading && (
-            <p className="text-sm text-gray-500 mt-2">Uploading image...</p>
+            <p className="text-sm text-ink-muted mt-2">Uploading image...</p>
           )}
           {coverImage && (
-            <div className="mt-3 relative w-full h-40 sm:h-48 rounded-lg overflow-hidden">
+            <div className="mt-3 relative w-full h-40 sm:h-48 rounded-lg overflow-hidden border border-border">
               <Image src={coverImage} alt="Cover" fill className="object-cover" />
             </div>
           )}
@@ -165,7 +168,7 @@ export default function CreatePage() {
 
         {/* Title */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-ink mb-2">
             Title
           </label>
           <input
@@ -173,13 +176,13 @@ export default function CreatePage() {
             placeholder="Enter blog title..."
             value={form.title}
             onChange={(e) => setForm({ ...form, title: e.target.value })}
-            className="w-full text-black border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+            className={inputClass}
           />
         </div>
 
         {/* Excerpt */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-ink mb-2">
             Excerpt (Short Description)
           </label>
           <input
@@ -187,13 +190,13 @@ export default function CreatePage() {
             placeholder="Short description of your blog..."
             value={form.excerpt}
             onChange={(e) => setForm({ ...form, excerpt: e.target.value })}
-            className="w-full text-black border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+            className={inputClass}
           />
         </div>
 
         {/* Tags */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-ink mb-2">
             Tags (comma separated)
           </label>
           <input
@@ -201,34 +204,34 @@ export default function CreatePage() {
             placeholder="e.g. tech, ai, programming"
             value={form.tags}
             onChange={(e) => setForm({ ...form, tags: e.target.value })}
-            className="w-full text-black border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+            className={inputClass}
           />
         </div>
 
         {/* Content */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-ink mb-2">
             Content
           </label>
           <div className="flex gap-2 mb-2">
             <button
               type="button"
               onClick={() => setPreviewMode(false)}
-              className={`text-sm px-3 py-1 rounded-lg ${!previewMode ? "bg-black text-white" : "bg-gray-100 text-gray-600"}`}
+              className={`text-sm px-3 py-1 rounded-lg transition-colors ${!previewMode ? "bg-primary text-white" : "bg-primary-tint text-ink-muted"}`}
             >
               ✏️ Edit
             </button>
             <button
               type="button"
               onClick={() => setPreviewMode(true)}
-              className={`text-sm px-3 py-1 rounded-lg ${previewMode ? "bg-black text-white" : "bg-gray-100 text-gray-600"}`}
+              className={`text-sm px-3 py-1 rounded-lg transition-colors ${previewMode ? "bg-primary text-white" : "bg-primary-tint text-ink-muted"}`}
             >
               👁️ Preview
             </button>
           </div>
           {previewMode ? (
             <div
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 min-h-64 prose prose-sm sm:prose-lg max-w-none overflow-auto"
+              className="w-full bg-surface text-ink border border-border rounded-lg px-4 py-3 min-h-64 prose prose-sm sm:prose-lg max-w-none overflow-auto"
               dangerouslySetInnerHTML={{ __html: form.content }}
             />
           ) : (
@@ -237,7 +240,7 @@ export default function CreatePage() {
               value={form.content}
               onChange={(e) => setForm({ ...form, content: e.target.value })}
               rows={10}
-              className="w-full text-black border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black resize-none"
+              className={`${inputClass} resize-none`}
             />
           )}
         </div>
@@ -245,7 +248,7 @@ export default function CreatePage() {
         {/* AI Generated Badge */}
         {isAIGenerated && (
           <div className="flex items-center gap-2">
-            <span className="bg-purple-100 text-purple-700 text-sm px-3 py-1 rounded-full">
+            <span className="bg-accent-tint text-accent text-sm px-3 py-1 rounded-full font-medium">
               🤖 AI Generated Content
             </span>
           </div>
@@ -255,7 +258,7 @@ export default function CreatePage() {
         <button
           onClick={handleSubmit}
           disabled={loading || imageUploading}
-          className="w-full bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 disabled:opacity-50"
+          className="w-full bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary-dark disabled:opacity-50 transition-colors font-medium"
         >
           {loading ? "Publishing..." : "Publish Blog 🚀"}
         </button>

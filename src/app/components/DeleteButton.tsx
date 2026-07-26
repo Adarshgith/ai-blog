@@ -29,7 +29,7 @@ export default function DeleteButton({ slug }: { slug: string }) {
     <button
       onClick={handleDelete}
       disabled={loading}
-      className="bg-red-500 text-white text-sm px-5 py-2 rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50"
+      className="bg-red-500 text-white text-sm px-5 py-2 rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50 whitespace-nowrap"
     >
       {loading ? "Deleting..." : "🗑️ Delete Blog"}
     </button>

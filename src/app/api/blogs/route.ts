@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/app/lib/prisma";
+import { auth } from "@/app/lib/auth";
 
 // GET all blogs
 export async function GET() {
@@ -19,6 +20,15 @@ export async function GET() {
 // POST create new blog
 export async function POST(request: Request) {
   try {
+    const session = await auth();
+
+    if (!session?.user) {
+      return NextResponse.json(
+        { error: "You must be signed in to create a blog" },
+        { status: 401 }
+      );
+    }
+
     const body = await request.json();
     const { title, slug, excerpt, content, tags, isAIGenerated, coverImage } = body;
 
@@ -31,6 +41,8 @@ export async function POST(request: Request) {
         tags,
         coverImage: coverImage ?? null,
         isAIGenerated: isAIGenerated ?? false,
+        userId: session.user.id as string,
+        authorName: session.user.name ?? "Anonymous",
       },
     });
 
