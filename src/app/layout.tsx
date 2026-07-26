@@ -19,7 +19,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "WordCraft AI — Write faster with AI",
+  title: "WordCraft AI",
   description:
     "WordCraft AI is an AI-powered blogging platform. Write your own posts or let AI draft them for you in seconds.",
 };
