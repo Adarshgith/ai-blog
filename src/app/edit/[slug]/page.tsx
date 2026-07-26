@@ -90,17 +90,20 @@ export default function EditPage() {
     setLoading(false);
   };
 
+  const inputClass =
+    "w-full bg-surface text-ink placeholder:text-ink-faint border border-border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors";
+
   if (fetching) {
     return (
-      <div className="text-center py-20 text-gray-400">
+      <div className="text-center py-20 text-ink-muted">
         Loading blog...
       </div>
     );
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold text-gray-400 mb-8">
+    <div className="w-full max-w-3xl mx-auto px-4 sm:px-6">
+      <h1 className="font-display text-2xl sm:text-4xl font-semibold text-ink mb-8">
         Edit Blog ✏️
       </h1>
 
@@ -108,11 +111,11 @@ export default function EditPage() {
 
         {/* Cover Image */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-ink mb-2">
             Cover Image
           </label>
           {coverImage && (
-            <div className="relative w-full h-48 rounded-lg overflow-hidden mb-3">
+            <div className="relative w-full h-48 rounded-lg overflow-hidden mb-3 border border-border">
               <Image
                 src={coverImage}
                 alt="Cover"
@@ -125,76 +128,76 @@ export default function EditPage() {
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none"
+            className="w-full bg-surface text-ink text-sm border border-border rounded-lg px-3 py-2 file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:bg-primary-tint file:text-primary file:font-medium focus:outline-none"
           />
           {imageUploading && (
-            <p className="text-sm text-gray-500 mt-2">Uploading image...</p>
+            <p className="text-sm text-ink-muted mt-2">Uploading image...</p>
           )}
         </div>
 
         {/* Title */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-ink mb-2">
             Title
           </label>
           <input
             type="text"
             value={form.title}
             onChange={(e) => setForm({ ...form, title: e.target.value })}
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+            className={inputClass}
           />
         </div>
 
         {/* Excerpt */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-ink mb-2">
             Excerpt
           </label>
           <input
             type="text"
             value={form.excerpt}
             onChange={(e) => setForm({ ...form, excerpt: e.target.value })}
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+            className={inputClass}
           />
         </div>
 
         {/* Tags */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-ink mb-2">
             Tags (comma separated)
           </label>
           <input
             type="text"
             value={form.tags}
             onChange={(e) => setForm({ ...form, tags: e.target.value })}
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+            className={inputClass}
           />
         </div>
 
         {/* Content */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-ink mb-2">
             Content
           </label>
           <div className="flex gap-2 mb-2">
             <button
               type="button"
               onClick={() => setPreviewMode(false)}
-              className={`text-sm px-3 py-1 rounded-lg ${!previewMode ? "bg-black text-white" : "bg-gray-100 text-gray-600"}`}
+              className={`text-sm px-3 py-1 rounded-lg transition-colors ${!previewMode ? "bg-primary text-white" : "bg-primary-tint text-ink-muted"}`}
             >
               ✏️ Edit
             </button>
             <button
               type="button"
               onClick={() => setPreviewMode(true)}
-              className={`text-sm px-3 py-1 rounded-lg ${previewMode ? "bg-black text-white" : "bg-gray-100 text-gray-600"}`}
+              className={`text-sm px-3 py-1 rounded-lg transition-colors ${previewMode ? "bg-primary text-white" : "bg-primary-tint text-ink-muted"}`}
             >
               👁️ Preview
             </button>
           </div>
           {previewMode ? (
             <div
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 min-h-64 prose prose-lg max-w-none"
+              className="w-full bg-surface text-ink border border-border rounded-lg px-4 py-3 min-h-64 prose prose-lg max-w-none"
               dangerouslySetInnerHTML={{ __html: form.content }}
             />
           ) : (
@@ -202,23 +205,23 @@ export default function EditPage() {
               value={form.content}
               onChange={(e) => setForm({ ...form, content: e.target.value })}
               rows={12}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black resize-none"
+              className={`${inputClass} resize-none`}
             />
           )}
         </div>
 
         {/* Buttons */}
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <button
             onClick={handleUpdate}
             disabled={loading || imageUploading}
-            className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 disabled:opacity-50"
+            className="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary-dark disabled:opacity-50 transition-colors font-medium"
           >
             {loading ? "Updating..." : "Update Blog ✅"}
           </button>
           <button
             onClick={() => router.back()}
-            className="bg-gray-100 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-200"
+            className="bg-primary-tint text-ink px-8 py-3 rounded-lg hover:bg-border transition-colors font-medium"
           >
             Cancel
           </button>
